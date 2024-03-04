@@ -19,12 +19,25 @@ public class User {
    @Column(name = "email")
    private String email;
 
+   @OneToOne(mappedBy = "user")
+   private Car car;
+
    public User() {}
    
-   public User(String firstName, String lastName, String email) {
+   public User(String firstName, String lastName, String email, Car car) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+      this.setCar(car);
+   }
+
+   public Car getCar() {
+      return car;
+   }
+
+   public void setCar(Car car) {
+      car.setUser(this);
+      this.car = car;
    }
 
    public Long getId() {
