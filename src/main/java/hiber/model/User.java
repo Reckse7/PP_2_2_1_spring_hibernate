@@ -19,7 +19,8 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @OneToOne(mappedBy = "user")
+   @OneToOne
+   @JoinColumn(name = "car_id")
    private Car car;
 
    public User() {}
@@ -28,7 +29,7 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
-      this.setCar(car);
+      this.car = car;
    }
 
    public Car getCar() {
@@ -36,7 +37,6 @@ public class User {
    }
 
    public void setCar(Car car) {
-      car.setUser(this);
       this.car = car;
    }
 
